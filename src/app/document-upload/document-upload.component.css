@@ -1,0 +1,44 @@
+/*!
+ * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/template-overviews/scrolling-nav)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
+ */
+
+ 
+  
+  
+ html,body {  
+    height: 100%;
+    margin: 0;
+    line-height:1 !important;
+  }
+  
+  
+  
+  .card{
+    margin-bottom: 50px;
+  }
+  
+  .navbar{
+    background-color:#f44336; 
+    font-size: 18px !important;
+    letter-spacing: 3px;
+    font-family: Montserrat, sans-serif;
+    z-index: 9999;
+    color:white;
+  }
+  
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+    margin-right:10px; 
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+    border-radius: 5px;
+  }
+  
+  
+  
+    
+  

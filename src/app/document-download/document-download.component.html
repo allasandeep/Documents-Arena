@@ -1,0 +1,87 @@
+<p>
+  document-download works!
+</p>
+<!DOCTYPE html>
+<html lang="en" style="height: 1024px;">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Documents Arena</title>    
+   
+  </head>
+
+  <body id="page-top" style="background-color: #f44336; " >    
+
+    <nav class="navbar navbar-expand-lg navbar-light" >
+      <a class="navbar-brand" href="#">DA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link" href="#">Home </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/formupload">Upload<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="/formdownload">Download </a>
+          </li>
+        </ul>
+        
+      </div>
+    </nav>
+       
+      <br/>
+        <br/>
+             
+           
+      <div class="container" align="center">
+      <section class="form-simple"  style="width:85% ">
+
+        <!--Form with header-->
+        <div class="card">
+    
+            <!--Header-->
+            <div class="header pt-3 grey lighten-2">
+    
+                <div class="row d-flex justify-content-start">
+                    <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Download Documents</h3>
+                </div>
+    
+            </div>          
+    
+            <div class="card-body mx-4 mt-4">  
+                                           
+                      <div class="form-group">
+                      <input type="text" class="form-control" id="exampleInputAccount1" autocorrect="off" autocapitalize="off" spellcheck="off" placeholder="Search for a File" #search>
+                      </div>                            
+                      <div class="text-center mb-4">
+                      <button type="button" class="btn btn-success btn-block z-depth-2" [disabled]="!selectedFiles" (click)="upload()">Search</button>
+                      </div>                      
+              </div>                 
+      </div>
+        <!--/Form with header-->
+    
+    </section>
+    </div>
+    
+    
+
+    <!-- <app-footer></app-footer> -->
+
+   
+  </body>
+
+</html>
+
+
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 1024px;">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Documents Arena</title>    
+   
+  </head>
+
+  <body id="page-top" style="background-color: #f44336; " >    
+
+    <nav class="navbar navbar-expand-lg navbar-light" >
+      <a class="navbar-brand" href="#">DA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link" href="#">Home </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/upload">Upload<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item  ">
+            <a class="nav-link" href="/download">Download </a>
+          </li>
+        </ul>
+        
+      </div>
+    </nav>
+       
+      <br/>
+        <br/>
+             
+           
+        <div class="container" align="center">
+          <section class="form-simple"  style="width: 40rem;">
+    
+            <!--Form with header-->
+            <div class="card" style="padding: 15px">
+        
+                <!--Header-->
+                <div class="header pt-3 grey lighten-2">
+        
+                    <div class="row d-flex justify-content-start">
+                        <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Upload Documents</h3>
+                    </div>
+        
+                </div>
+                <!--Header-->
+        
+                <div class="card-body mx-4 mt-4">  
+                        <div class="form-group">
+                                <div class="input-group input-file" name="Fichier1">
+                                <span class="input-group-btn">
+                                <input type="file" style="display: none" #file (change)="selectFile($event)"/>
+                                <button class="btn btn-default btn-choose" style="border-radius: 0rem" (click)="file.click()" style="margin-right:5px">Browse</button>
+                                </span>
+                                <input type="text" class="form-control" placeholder='Choose a file...' />
+                                <span class="input-group-btn">
+                                <button class="btn btn-warning btn-reset" style="border-radius: 0rem" type="button" style="margin-left:5px">Reset</button>
+                                </span>
+                                </div>
+                                </div>                        
+                                <div class="form-row"> 
+                                <div class="form-group col-md-6">                     
+                                <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter First Name">
+                                </div>
+                                <div class="form-group col-md-6">               
+                                <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Last Name">
+                                </div>          
+                                </div>
+                                <div class="form-group">                        
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                <input type="number" class="form-control" id="routingnum" placeholder="Enter Routing Number">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                <input type="number" class="form-control" id="accountnum" placeholder="Enter Account Number">
+                                </div>            
+                                </div>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+                                <br/>
+                                <div class="text-center mb-4">
+                                <button type="button" class="btn btn-danger btn-block z-depth-2" [disabled]="!selectedFiles" >Upload</button>
+                                </div>              
+                                       
+                    
+                    
+        
+                </div>
+        
+            </div>
+            <!--/Form with header-->
+        
+        </section>
+        </div>
+        
+    
+    
+
+    <!-- <app-footer></app-footer> -->
+
+   
+  </body>
+
+</html>
+
+
+
+
