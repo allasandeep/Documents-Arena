@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Users</h4>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Capital</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let users of allusers">
+          <td>{{users._id}}</td>
+          <td>{{users.name}}</td>
+          <td>{{users.capital}}</td>
+          <td> <button class="btn btn-primary" (click)="doUpdate(users)"> Edit</button>
+            <button class="btn btn-danger" (click)="doDelete(users)" >Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
