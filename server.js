@@ -17,6 +17,10 @@ app.get('/' , function (req, res) {
     res.sendFile(path.join(__dirname, 'dist/Documents-Arena/index.html'))
 });
 
+app.get('/' , function (req, res) {
+    res.sendFile(path.join(__dirname, 'dist/Documents-Arena/index.html'))
+});
+
 var port = process.env.PORT || '4200';
 app.set('port', port);
 

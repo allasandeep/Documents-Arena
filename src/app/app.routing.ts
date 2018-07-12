@@ -7,8 +7,8 @@ import { DocumentUploadComponent } from './document-upload/document-upload.compo
  
 export const AppRoutes: Routes = [
     { path: '', component: HomeComponent},
-    { path: 'upload', component: DocumentUploadComponent },
-    { path: 'download', component: DocumentUploadComponent }
+    { path: 'documentUpload', component: DocumentUploadComponent },
+    { path: 'documentDownload', component: DocumentUploadComponent }
     
 ];
  
