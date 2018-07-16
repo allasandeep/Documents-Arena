@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   newDocument(event:any){
     event.preventDefault();
     this.usersService.setter(new Users());
-    this.router.navigate(['/createUpdate']);
+    this.router.navigate(['/documentUpload']);
 
   }
 

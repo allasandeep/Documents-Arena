@@ -12,7 +12,7 @@ import { CreateUpdateComponent } from './create-update/create-update.component';
 import { ROUTING } from './app.routing';
 import { UsersService } from './shared/users.service';
 import {HttpClientModule } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,6 +29,7 @@ import {HttpClientModule } from '@angular/common/http';
     HttpModule,
     HttpClientModule,
     ROUTING,
+    ReactiveFormsModule,
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAqARi_gp_pDonRIiArrCSYdJWIc5UQI7A',

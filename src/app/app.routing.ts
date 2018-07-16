@@ -11,8 +11,8 @@ export const AppRoutes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'documentUpload', component: DocumentUploadComponent },
     { path: 'documentDownload', component: DocumentUploadComponent },
-    {path:'list', component: ListComponent},
-    {path:'createUpdate' , component: CreateUpdateComponent},
+    { path: 'list', component: ListComponent},
+    { path: 'createUpdate' , component: CreateUpdateComponent},
     
 ];
  
