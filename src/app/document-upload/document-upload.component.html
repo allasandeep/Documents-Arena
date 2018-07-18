@@ -57,7 +57,7 @@
                 <!--Header-->
         
                 <div class="card-body mx-4 mt-4"> 
-                    <form (ngSubmit) = "documentUpdate(); f.reset()" #f="ngForm"> 
+                    <form (ngSubmit) = "documentUpdate()" [formGroup]="uploadForm" > 
                         <div class="form-group">
                           <div class="form-row">
                               <div class="form-group col-md-6">
@@ -77,38 +77,38 @@
                                 
                                 <div class="form-row"> 
                                 <div class="form-group col-md-6">                     
-                                <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)] = "users.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required placeholder="Enter First Name">
-                                <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
-                                <div *ngIf="firstName.errors.required" style="text-align:left ">First Name is required</div>
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName" [(ngModel)] = "users.firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="Enter First Name">
+                                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstName.errors.required" style="text-align:left ">First Name is required</div>
                                 </div>
                                 </div>
                                 <div class="form-group col-md-6">               
-                                <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)] = "users.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required placeholder="Enter Last Name">
-                                <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
-                                    <div *ngIf="lastName.errors.required" style="text-align:left" >Last Name is required</div>
+                                <input type="text" class="form-control" id="lastName" formControlName="lastName" [(ngModel)] = "users.lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Enter Last Name">
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required" style="text-align:left" >Last Name is required</div>
                                 </div>
                                </div>          
                                 </div>
                                 <div class="form-group">                        
-                                <input type="email" class="form-control" id="email" name="email" [(ngModel)] = "users.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email placeholder="Enter Email">
-                                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-                                    <div *ngIf="email.errors.required" style="text-align:left ">Email is required</div>
-                                    <div *ngIf="email.errors.email" style="text-align:left ">Email must be a valid email address</div>
+                                <input type="email" id="email" formControlName="email" class="form-control" [(ngModel)] = "users.email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter Email">
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required" style="text-align:left ">Email is required</div>
+                                    <div *ngIf="f.email.errors.email" style="text-align:left ">Email must be a valid email address</div>
                                 </div>
                                 </div>
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
-                                <input type="number" class="form-control" id="routingNum" name="routingNum" [(ngModel)] = "users.routingNum" #routingNum="ngModel" [ngClass]="{ 'is-invalid': f.submitted && routingNum.invalid }" required placeholder="Enter Routing Number">
-                                <div *ngIf="f.submitted && routingNum.invalid" class="invalid-feedback">
-                                    <div *ngIf="routingNum.errors.required" style="text-align:left ">Routing number is required</div>
-                                    <div *ngIf="email.errors.email" style="text-align:left ">Email must be a valid email address</div>
+                                <input type="number" class="form-control" onKeyPress="if(this.value.length==9) return false;" id="routingNum" formControlName="routingNum" [(ngModel)] = "users.routingNum" [ngClass]="{ 'is-invalid': submitted && f.routingNum.errors }" placeholder="Enter Routing Number">
+                                <div *ngIf="submitted && f.routingNum.errors" class="invalid-feedback">
+                                    <div *ngIf="f.routingNum.errors.required" style="text-align:left ">Routing number is required</div>
                                 </div>
+                                <div *ngIf="onKeyPress" style="text-align:left ">Enter a valid Routing number.</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                <input type="number" class="form-control" id="accountNum" name="accountNum" [(ngModel)] = "users.accountNum" #accountNum="ngModel" [ngClass]="{ 'is-invalid': f.submitted && accountNum.invalid }" required placeholder="Enter Account Number">
-                                <div *ngIf="f.submitted && accountNum.invalid" class="invalid-feedback">
-                                    <div *ngIf="accountNum.errors.required" style="text-align:left ">Account number is required</div>
-                                    <div *ngIf="email.errors.email" style="text-align:left ">Email must be a valid email address</div>
+                                <input type="text" class="form-control" id="accountNum" formControlName="accountNum" [(ngModel)] = "users.accountNum" [ngClass]="{ 'is-invalid': submitted && f.accountNum.errors }" placeholder="Enter Account Number">
+                                <div *ngIf="submitted && f.accountNum.errors" class="invalid-feedback">
+                                    <div *ngIf="f.accountNum.errors.required" style="text-align:left ">Account number is required</div>
+                                    <div *ngIf="f.accountNum.errors.minlength" style="text-align:left ">Enter a valid Account number</div>
                                 </div>
                                 </div>            
                                 </div>
