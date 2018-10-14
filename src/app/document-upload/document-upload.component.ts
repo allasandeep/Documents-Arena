@@ -40,7 +40,7 @@ export class DocumentUploadComponent implements OnInit {
 
   get f() { return this.uploadForm.controls; }
 
-  documentUpdate(){
+  documentSubmit(){
       this.submitted = true;
       if (this.uploadForm.invalid) {
         return;
@@ -52,10 +52,15 @@ export class DocumentUploadComponent implements OnInit {
         error=>{
           console.log(error);
         }
-      )    
-    
+      )        
+      this.resetForm();
   }
  
+  resetForm(){
+    this.uploadForm.reset();
+    this.submitted = false;    
+  }
+
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }

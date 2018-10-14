@@ -57,7 +57,7 @@
                 <!--Header-->
         
                 <div class="card-body mx-4 mt-4"> 
-                    <form (ngSubmit) = "documentUpdate()" [formGroup]="uploadForm" > 
+                    <form (ngSubmit) = "documentSubmit()" [formGroup]="uploadForm" > 
                         <div class="form-group">
                           <div class="form-row">
                               <div class="form-group col-md-6">
@@ -116,7 +116,7 @@
                                 <br/>
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
-                                <button class="btn btn-warning btn-block btn-reset" (click)="f.reset()" type="button" >Reset</button>
+                                <button class="btn btn-warning btn-block btn-reset" (click)="resetForm()" type="button" >Clear</button>
                                 </div>
                                 <div class="form-group col-md-6">
                                 <input type="submit" value="Upload" class="btn btn-danger btn-block z-depth-2" >                                
