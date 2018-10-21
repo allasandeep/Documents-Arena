@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Users } from '../users';
+import { Http} from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +12,14 @@ import { Users } from '../users';
 export class UsersService {
   private users:Users;
   private baseUri:string = "http://localhost:8080";
-  private headers = new HttpHeaders().set('content-Type','application/json');
-  constructor(private http:HttpClient) { }
+  //private headers = new HttpHeaders().set('content-Type','application/json');
+  constructor(private http:Http) { }  
 
-  createUsers(users:Users){
-    return this.http.post(this.baseUri+'/create',  users, {headers:this.headers});
+  createUsers(formGroup){                           
+    return this.http.post(this.baseUri+'/create', formGroup).map(res => res.json());
   }
 
-  readUsers(){
+ /* readUsers(){
     return this.http.get(this.baseUri+'/read', {headers:this.headers});
   }
 
@@ -26,7 +29,7 @@ export class UsersService {
 
   deleteUsers(id:string){
     return this.http.delete(this.baseUri+'/delete/'+id, {headers:this.headers});
-  }
+  }*/
 
   setter(users:Users){
     this.users = users;

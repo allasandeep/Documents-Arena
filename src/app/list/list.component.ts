@@ -13,10 +13,10 @@ export class ListComponent implements OnInit {
   constructor(private _usersService:UsersService, private router: Router) { }
 
   ngOnInit() {
-    this.readUsers();
+    //this.readUsers();
   }
 
-  readUsers(){
+  /*readUsers(){
     this._usersService.readUsers().subscribe(
       data=>{
         console.log(data);
@@ -42,6 +42,6 @@ export class ListComponent implements OnInit {
         console.log(error);
       }
     )
-  }
+  }*/
 
 }

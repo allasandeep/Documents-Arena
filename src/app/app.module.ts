@@ -20,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     DocumentUploadComponent,
     DocumentDownloadComponent,    
-    ListComponent
+    ListComponent,    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     })   
     
   ],
-  providers: [ UsersService ],
+  providers: [ UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
