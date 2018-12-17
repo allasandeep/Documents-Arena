@@ -30,7 +30,7 @@
   }
   
   .card{
-    margin-bottom: 50px;
+    margin-bottom: 15px;
   }
   
   .navbar{
@@ -40,6 +40,12 @@
     font-family: Montserrat, sans-serif;
     z-index: 9999;
     color:white;
+  }
+
+  .document-card{
+    text-align: left;    
+    font-weight: 500;
+    color:#363333;    
   }
   
   .navbar li a, .navbar .navbar-brand {

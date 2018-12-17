@@ -12,6 +12,9 @@ import { ROUTING } from './app.routing';
 import { UsersService } from './shared/users.service';
 import {HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -20,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     DocumentUploadComponent,
     DocumentDownloadComponent,    
-    ListComponent,    
+    ListComponent, HeaderComponent, FooterComponent,    
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAqARi_gp_pDonRIiArrCSYdJWIc5UQI7A',
       libraries: ["places"]
-    })   
+    }),
+    BrowserAnimationsModule   
     
   ],
   providers: [ UsersService],

@@ -12,17 +12,18 @@ import 'rxjs/Rx';
 export class UsersService {
   private users:Users;
   private baseUri:string = "http://localhost:8080";
-  //private headers = new HttpHeaders().set('content-Type','application/json');
+//  private headers = new HttpHeaders().set('content-Type','application/json');
   constructor(private http:Http) { }  
 
   createUsers(formGroup){                           
     return this.http.post(this.baseUri+'/create', formGroup).map(res => res.json());
   }
 
- /* readUsers(){
-    return this.http.get(this.baseUri+'/read', {headers:this.headers});
+  readUsers(){
+    return this.http.get(this.baseUri+'/readall').map(res => res.json());
   }
 
+  /*
   updateUsers(users:Users){
     return this.http.put(this.baseUri+'/update',  users, {headers:this.headers});
   }

@@ -1,4 +1,4 @@
-export class Users {
+export class DocumentData {
     public _id?:string;
     public firstName:string;
     public lastName:string;
@@ -10,5 +10,6 @@ export class Users {
     public fileState:string;
     public fileCountry:string;
     public fileZip:string;
-    public filePrice:string;     
+    public filePrice:string; 
+    public documentPath:string;    
 }
