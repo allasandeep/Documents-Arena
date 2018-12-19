@@ -4,7 +4,7 @@ import {} from '@types/googlemaps';
 import {UsersService} from '../shared/users.service';
 import { DocumentData } from '../documentData';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
-
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-document-download',
@@ -57,6 +57,20 @@ export class DocumentDownloadComponent implements OnInit {
             }
         });
         console.log(data);          
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+
+  downloadFile(documentPath){
+    let dPath = documentPath.split("\\");
+    let filename = dPath[1];
+    //console.log(filename);    
+    this.usersService.downloadFile(filename).subscribe(
+      data=>{       
+       saveAs(data,filename);      
       },
       error=>{
         console.log(error);
