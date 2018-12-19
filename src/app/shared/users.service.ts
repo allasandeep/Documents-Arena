@@ -12,8 +12,8 @@ import 'rxjs/Rx';
 export class UsersService {
   private users:Users;
   private baseUri:string = "http://localhost:8080";
-//  private headers = new HttpHeaders().set('content-Type','application/json');
-  constructor(private http:Http) { }  
+  private headers = new HttpHeaders().set('content-Type','application/json');
+  constructor(private http:Http, private _http:HttpClient) { }  
 
   createUsers(formGroup){                           
     return this.http.post(this.baseUri+'/create', formGroup).map(res => res.json());
@@ -21,6 +21,14 @@ export class UsersService {
 
   readUsers(){
     return this.http.get(this.baseUri+'/readall').map(res => res.json());
+  }
+
+  downloadFile(file:string){
+    var body = {filename:file};
+    return this._http.post(this.baseUri+'/download', body, {
+      responseType : 'blob',
+      headers: this.headers
+    });
   }
 
   /*
