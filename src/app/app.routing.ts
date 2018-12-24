@@ -5,7 +5,6 @@ import { DocumentUploadComponent } from './document-upload/document-upload.compo
 import { DocumentDownloadComponent } from './document-download/document-download.component';
 import { ListComponent } from './list/list.component';
 
- 
 export const AppRoutes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'documentUpload', component: DocumentUploadComponent },

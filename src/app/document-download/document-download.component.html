@@ -30,25 +30,26 @@
               </div>                 
       </div>
         <!--/Form with header-->
-        <div class="card" *ngIf="documentsFound?.length > 0">             
+        <div class="card" *ngIf="documentCardIsVisible">             
             <div class="card-body mx-2 mt-2" *ngFor = "let document of documentsFound">
               <div class="row">
                 <div class="col-9 document-card">
-                  <span style = "display:block; margin-bottom:4px;">{{streetAddress.value}} By <span style = "color:#0062cc"> {{document.firstName}} {{document.lastName}} </span></span>
+                  <span style = "display:block; margin-bottom:4px;"> {{document.fileAddress}}, {{document.fileCity}}, {{document.fileState}}, {{document.fileCountry}} By <span style = "color:#0062cc"> {{document.firstName}} {{document.lastName}} </span></span>
                   <span style = "display:block">Price: <span style="color:#1e7e34"> <i class="fa fa-usd"></i> {{document.filePrice}}</span> </span>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-success btn-block z-depth-2" (click)="downloadFile(document.documentPath)"><i class='fa fa-arrow-down'></i> Download</button>                  
+                    <button type="button" class="btn btn-success btn-block z-depth-2" (click)="openCheckout(document.filePrice, document.documentPath, streetAddress.value)"><i class='fa fa-arrow-down'></i> Download</button>                  
                 </div>
-              </div>
-                              
-            </div>                 
+              </div>              
+        </div>                 
       </div>
-    
-    </section>
-    </div> 
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqARi_gp_pDonRIiArrCSYdJWIc5UQI7A&libraries=places&callback=activatePlacesSearch"></script>    
+      <div class="alert alert-warning" role="alert" *ngIf="notFoundIsVisible">
+          <strong>Sorry!</strong>  No documents were found for that address.
+        </div>               
+    
+    </section>    
+  </div>       
   </body>
 
 </html>

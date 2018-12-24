@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { Router } from '@angular/router';
 import {UsersService} from '../shared/users.service';
 import {Users} from '../users';
+import { MapsAPILoader } from '@agm/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
@@ -17,10 +18,28 @@ export class DocumentUploadComponent implements OnInit {
   private users:Users;
   uploadForm: FormGroup;
   submitted = false;
-  constructor(private usersService:UsersService, private router:Router, private formBuilder: FormBuilder) { }
+  @ViewChild('searchAddress') public searchAddress: ElementRef;
+  private addressFound: string;
+
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private usersService:UsersService, private router:Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {   
-   
+
+    this.mapsAPILoader.load().then(
+      () => {
+            let autocomplete = new google.maps.places.Autocomplete(this.searchAddress.nativeElement, { types:["address"] });
+            autocomplete.addListener("place_changed", () => {
+                      this.ngZone.run(() => {
+                      let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+                      if(place.geometry === undefined || place.geometry === null )
+                      {
+                        return;
+                      }
+                  });
+              });
+          });        
+        
+        this.addressFound = null;
         this.users= {
           'firstName':null,
           'lastName':null,
@@ -47,12 +66,39 @@ export class DocumentUploadComponent implements OnInit {
           fileState: ['', Validators.required],
           fileCountry: ['', Validators.required],
           fileZip: ['', Validators.required],
-          filePrice: ['', Validators.required]          
+          filePrice: ['', Validators.required],
+          addressFound:['']  
       });
       
   } 
 
   get f() { return this.uploadForm.controls; }
+
+  fillAddressFields(streetAddress){    
+    let address, street, city, state, country;
+    
+    if(streetAddress != null)
+    {
+      address = streetAddress.split(","); 
+      street = address[0];
+      city = address[1].trim();
+      state = address[2].trim();
+      country = address[3].trim();
+      this.users.fileAddress = street;
+      this.users.fileCity = city;
+      this.users.fileState = state;
+      this.users.fileCountry = country;
+
+      this.usersService.zipCodeLookUp(city, state).subscribe(
+        data => {          
+          this.users.fileZip = data.zip_codes[0];
+      },
+     error => {
+       console.log(error);
+     } 
+    )
+    }
+  }
 
   documentSubmit(){      
       this.submitted = true;                 
@@ -66,7 +112,7 @@ export class DocumentUploadComponent implements OnInit {
     const ImageFile: File = this.selectedFile;
     this.selectedFileName = ImageFile.name;
     const datetime = new Date();
-    const fileName = this.users.fileAddress + "-" + this.users.fileCity + "-" + this.users.fileState + "-" + this.users.fileZip + "-" + datetime.getTime() + "-" + ImageFile.name;
+    const fileName = (datetime.getTime() + Math.random()).toLocaleString();
    //console.log(ImageFile);
     const formdata:FormData = new FormData();
     formdata.append("firstName", this.users.firstName);

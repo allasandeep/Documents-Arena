@@ -35,17 +35,25 @@
                                     <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
                                         <div *ngIf="f.file.errors.required" style="text-align:center">Please select a file                                          
                                         </div>
-                                    </div>                                   
-                                </div>                                                
+                                    </div>                                                                      
+                                </div>      
+                                <div class="form-row">
+                                    <div class="form-group col-9">
+                                    <input type="text" class="form-control" id="searchAddress" formControlName="addressFound" [(ngModel)] = "addressFound" placeholder="Type to Search Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" #searchAddress>                                     
+                                    </div>
+                                    <div class="form-group col">
+                                    <button type="button" class="btn btn-primary btn-block z-depth-2"  (click)="fillAddressFields(searchAddress.value)" [disabled]="searchAddress.value.length > 0 ? false : true">Select</button>
+                                    </div>
+                                </div>                                          
                                 <div class="form-row"> 
                                     <div class="form-group col-md-6">                     
-                                    <input type="text" class="form-control" id="fileAddress" formControlName="fileAddress" [(ngModel)] = "users.fileAddress"  [ngClass]="{ 'is-invalid': submitted && f.fileAddress.errors }" placeholder="Enter Address">
+                                    <input type="text" class="form-control" id="fileAddress" formControlName="fileAddress" [(ngModel)] = "users.fileAddress"  [ngClass]="{ 'is-invalid': submitted && f.fileAddress.errors }" placeholder="Street Address" [attr.disabled]="true">
                                     <div *ngIf="submitted && f.fileAddress.errors" class="invalid-feedback">
                                     <div *ngIf="f.fileAddress.errors.required" style="text-align:left ">Address is required</div>
                                     </div>
                                     </div>
                                     <div class="form-group col-md-6">               
-                                    <input type="text" class="form-control" id="fileCity" formControlName="fileCity" [(ngModel)] = "users.fileCity" [ngClass]="{ 'is-invalid': submitted && f.fileCity.errors }" placeholder="Enter City">
+                                    <input type="text" class="form-control" id="fileCity" formControlName="fileCity" [(ngModel)] = "users.fileCity" [ngClass]="{ 'is-invalid': submitted && f.fileCity.errors }" placeholder="City" [attr.disabled]="true">
                                     <div *ngIf="submitted && f.fileCity.errors" class="invalid-feedback">
                                         <div *ngIf="f.fileCity.errors.required" style="text-align:left" >City is required</div>
                                     </div>
@@ -53,13 +61,13 @@
                                     </div>
                                     <div class="form-row"> 
                                         <div class="form-group col-md-6">                     
-                                        <input type="text" class="form-control" id="fileState" formControlName="fileState" [(ngModel)] = "users.fileState"  [ngClass]="{ 'is-invalid': submitted && f.fileState.errors }" placeholder="Enter State">
+                                        <input type="text" class="form-control" id="fileState" formControlName="fileState" [(ngModel)] = "users.fileState"  [ngClass]="{ 'is-invalid': submitted && f.fileState.errors }" placeholder="State" [attr.disabled]="true">
                                         <div *ngIf="submitted && f.fileState.errors" class="invalid-feedback">
                                         <div *ngIf="f.fileState.errors.required" style="text-align:left ">State is required</div>
                                         </div>
                                         </div>
                                         <div class="form-group col-md-6">               
-                                            <input type="text" class="form-control" id="fileCountry" formControlName="fileCountry" [(ngModel)] = "users.fileCountry" [ngClass]="{ 'is-invalid': submitted && f.fileCountry.errors }" placeholder="Enter Country">
+                                            <input type="text" class="form-control" id="fileCountry" formControlName="fileCountry" [(ngModel)] = "users.fileCountry" [ngClass]="{ 'is-invalid': submitted && f.fileCountry.errors }" placeholder="Country" [attr.disabled]="true">
                                             <div *ngIf="submitted && f.fileCountry.errors" class="invalid-feedback">
                                                 <div *ngIf="f.fileCountry.errors.required" style="text-align:left" >Country is required</div>
                                             </div>
@@ -67,7 +75,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">    
-                                                <input type="text" class="form-control" id="fileZip" formControlName="fileZip" [(ngModel)] = "users.fileZip" [ngClass]="{ 'is-invalid': submitted && f.fileZip.errors }" placeholder="Enter Zip Code">
+                                                <input type="text" class="form-control" id="fileZip" formControlName="fileZip" [(ngModel)] = "users.fileZip" [ngClass]="{ 'is-invalid': submitted && f.fileZip.errors }" placeholder="Zip Code" [attr.disabled]="true">
                                                 <div *ngIf="submitted && f.fileZip.errors" class="invalid-feedback">
                                                     <div *ngIf="f.fileZip.errors.required" style="text-align:left" >Zip Code is required</div>
                                                 </div>                                               
@@ -150,13 +158,6 @@
         
         </section>
         </div>
-        
-    
-    
-
-    <!-- <app-footer></app-footer> -->
-
-   
   </body>
 
 </html>

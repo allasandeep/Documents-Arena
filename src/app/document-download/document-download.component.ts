@@ -14,8 +14,10 @@ import {saveAs} from 'file-saver';
 export class DocumentDownloadComponent implements OnInit {
 
   private documentsFound: Array<DocumentData>;
+  private notFoundIsVisible: Boolean;
+  private documentCardIsVisible: Boolean;
   @ViewChild('search') public searchElement: ElementRef;
-  
+
   constructor(private mapsAPILoader: MapsAPILoader, private usersService:UsersService, private ngZone: NgZone) {
     this.documentsFound = [];
   }
@@ -33,7 +35,10 @@ export class DocumentDownloadComponent implements OnInit {
                             }
                         });
                     });
-                });                
+                });     
+                
+      this.notFoundIsVisible = false;
+      this.documentCardIsVisible = false;
   }
 
   searchDocument(streetAddress){
@@ -50,27 +55,77 @@ export class DocumentDownloadComponent implements OnInit {
     //console.log(street + "-" + city + "-" + state + "-" + country);
     this.usersService.readUsers().subscribe(
       data=>{
+        this.documentsFound = [];
         data.forEach(element => {
            if(element.fileAddress == street && element.fileCity == city && element.fileState == state && element.fileCountry == country)
             {
               this.documentsFound.push(element);
-            }
+            }           
         });
+        
+        if(this.documentsFound.length > 0)
+        {
+            this.documentCardIsVisible = true;
+            this.notFoundIsVisible = false;
+        }
+        else
+        {
+            this.documentCardIsVisible = false;
+            this.notFoundIsVisible = true;
+        }
+
         console.log(data);          
       },
       error=>{
         console.log(error);
       }
     )
+  }  
+
+  openCheckout(Price, fPath, fName) {
+    let fPrice = Price * 100;
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_RHfdi105HoxX8hLBKuDuCs8p',
+      locale: 'auto',
+      zipCode: true,
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      billingAddress: true,
+      token: (token: any) => {
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.        
+        this.usersService.charge(token, fPrice, fName).subscribe(
+          data=>{       
+           console.log(data);      
+           if(data.msg == "success")
+            {
+              this.downloadFile(fPath, fName);
+            }
+            else {
+              
+            }
+          },
+          error=>{
+            console.log(error);
+          }
+        ) 
+      }
+    });
+
+    handler.open({
+      name: 'Payment',
+      description: fName,
+      amount: fPrice
+    });
+
   }
 
-  downloadFile(documentPath){
+  downloadFile(documentPath, fName){
     let dPath = documentPath.split("\\");
     let filename = dPath[1];
     //console.log(filename);    
     this.usersService.downloadFile(filename).subscribe(
       data=>{       
-       saveAs(data,filename);      
+       saveAs(data,fName);      
       },
       error=>{
         console.log(error);
