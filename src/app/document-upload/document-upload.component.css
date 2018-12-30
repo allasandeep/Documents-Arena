@@ -16,7 +16,7 @@
   
   
   .card{
-    margin-bottom: 50px;
+    margin-bottom: 3em;
   }
   
   .navbar{
@@ -38,6 +38,11 @@
     border-radius: 5px;
   }
   
+  @media (min-width: 768px) {
+    .form-simple{
+      width: 40rem;
+    }    
+  }
   
   
     

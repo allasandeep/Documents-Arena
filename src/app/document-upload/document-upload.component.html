@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 1024px;">
+<html lang="en">
 
   <head>
 
@@ -12,14 +12,14 @@
    
   </head>
 
-  <body id="page-top" style="background-color: #f44336; " >                   
+  <body style="background-color: #f44336;">                   
         <div class="container-fluid" align="center">
-          <section class="form-simple"  style="width: 40rem;">
+          <section class="form-simple">
     
             <!--Form with header-->
             <div class="card">             
         
-                <div class="card-body mx-4 mt-4"> 
+                <div class="card-body"> 
                     <form (ngSubmit) = "documentSubmit()" [formGroup]="uploadForm" enctype="multipart/form-data"> 
                         <div class="form-group">                                                                                 
                           <div class="form-group">
@@ -38,13 +38,15 @@
                                     </div>                                                                      
                                 </div>      
                                 <div class="form-row">
-                                    <div class="form-group col-9">
-                                    <input type="text" class="form-control" id="searchAddress" formControlName="addressFound" [(ngModel)] = "addressFound" placeholder="Type to Search Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" #searchAddress>                                     
+                                    <div class="form-group col-8">
+                                    <input type="text" class="form-control searchAddress" id="searchAddress" formControlName="addressFound" [(ngModel)] = "addressFound" placeholder="Type to Search Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" #searchAddress>                                     
                                     </div>
                                     <div class="form-group col">
                                     <button type="button" class="btn btn-primary btn-block z-depth-2"  (click)="fillAddressFields(searchAddress.value)" [disabled]="searchAddress.value.length > 0 ? false : true">Select</button>
-                                    </div>
-                                </div>                                          
+                                    </div>                                    
+                                </div>    
+                                <small id="emailHelp" class="form-text text-muted">Select address from the suggestions to automatically fill below fields.</small>
+                                <br/>                                      
                                 <div class="form-row"> 
                                     <div class="form-group col-md-6">                     
                                     <input type="text" class="form-control" id="fileAddress" formControlName="fileAddress" [(ngModel)] = "users.fileAddress"  [ngClass]="{ 'is-invalid': submitted && f.fileAddress.errors }" placeholder="Street Address" [attr.disabled]="true">
@@ -91,8 +93,9 @@
                                         </div>
                                         </div>
                                         </div>
-                                        </div>                         
+                                        </div>                                                                 
                           </div>
+                          
                           <div class="form-group"> 
                           <div class="form-row">
                               <div class="form-group col-md-6" style="text-align: left">
@@ -144,9 +147,18 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                 <input type="submit" value="Upload" class="btn btn-danger btn-block z-depth-2" >                                
-                                </div> 
-                                </div>             
-                             
+                                </div>                                 
+                                </div>     
+                                <div class="form-row" *ngIf="isSuccess">
+                                    <div class="container alert alert-success" role="alert">
+                                        Uploaded Successfully!
+                                    </div>
+                                </div>        
+                                <div class="form-row" *ngIf="isNotSuccess">
+                                        <div class="container alert alert-danger" role="alert">
+                                            Upload Failed! Try again.
+                                        </div>
+                                </div>
                           </div>
                         </div>
                     

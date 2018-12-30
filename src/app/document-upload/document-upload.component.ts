@@ -18,6 +18,9 @@ export class DocumentUploadComponent implements OnInit {
   private users:Users;
   uploadForm: FormGroup;
   submitted = false;
+  isSuccess:Boolean;
+  isNotSuccess:Boolean;
+  zipCode:string;
   @ViewChild('searchAddress') public searchAddress: ElementRef;
   private addressFound: string;
 
@@ -35,10 +38,20 @@ export class DocumentUploadComponent implements OnInit {
                       {
                         return;
                       }
+                      for (var i = 0; i < place.address_components.length; i++) {
+                        for (var j = 0; j < place.address_components[i].types.length; j++) {
+                          if (place.address_components[i].types[j] == "postal_code") {
+                            this.zipCode = " ";
+                            this.zipCode = place.address_components[i].long_name;                                  
+                          }
+                        }
+                      }
                   });
               });
           });        
         
+        this.isSuccess = false;
+        this.isNotSuccess = false;
         this.addressFound = null;
         this.users= {
           'firstName':null,
@@ -87,16 +100,9 @@ export class DocumentUploadComponent implements OnInit {
       this.users.fileAddress = street;
       this.users.fileCity = city;
       this.users.fileState = state;
-      this.users.fileCountry = country;
-
-      this.usersService.zipCodeLookUp(city, state).subscribe(
-        data => {          
-          this.users.fileZip = data.zip_codes[0];
-      },
-     error => {
-       console.log(error);
-     } 
-    )
+      this.users.fileCountry = country;          
+      this.users.fileZip = this.zipCode;
+     
     }
   }
 
@@ -129,7 +135,14 @@ export class DocumentUploadComponent implements OnInit {
     formdata.append("file", ImageFile, fileName);
       this.usersService.createUsers(formdata).subscribe(
         data=>{
-          console.log(data);          
+            if(data.msg == "success")
+            {
+              this.isSuccess = true;
+            }
+            else
+              {
+                this.isNotSuccess = true;
+              }          
         },
         error=>{
           console.log(error);

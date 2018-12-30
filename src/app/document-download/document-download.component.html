@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 1024px;">
+<html lang="en">
 
   <head>
 
@@ -12,15 +12,15 @@
    
   </head>
 
-  <body id="page-top" style="background-color: #f44336; " >                  
+  <body style="background-color: #f44336;">                  
       <div class="container-fluid" align="center">
-      <section class="form-simple"  style="width:85% ">
+      <section class="form-simple">
 
         <!--Form with header-->
         <div class="card">        
-            <div class="card-body mx-2 mt-2">
-              <div class="row">                                                          
-                       <div class="col-10">
+            <div class="card-body">
+              <div class="form-row">                                                          
+                       <div class="col-8">
                           <input type="text" id="streetAddress" #streetAddress placeholder="Search for File" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search>
                         </div>
                         <div class="col">
@@ -31,13 +31,13 @@
       </div>
         <!--/Form with header-->
         <div class="card" *ngIf="documentCardIsVisible">             
-            <div class="card-body mx-2 mt-2" *ngFor = "let document of documentsFound">
-              <div class="row">
-                <div class="col-9 document-card">
-                  <span style = "display:block; margin-bottom:4px;"> {{document.fileAddress}}, {{document.fileCity}}, {{document.fileState}}, {{document.fileCountry}} By <span style = "color:#0062cc"> {{document.firstName}} {{document.lastName}} </span></span>
+            <div class="card-body" *ngFor = "let document of documentsFound">
+              <div class="form-row">
+                <div class="form-group col-10 document-card">
+                  <span style = "display:block; margin-bottom:0.5em;"> {{document.fileAddress}}, {{document.fileCity}}, {{document.fileState}}, {{document.fileCountry}} By <span style = "color:#0062cc"> {{document.firstName}} {{document.lastName}} </span></span>
                   <span style = "display:block">Price: <span style="color:#1e7e34"> <i class="fa fa-usd"></i> {{document.filePrice}}</span> </span>
                 </div>
-                <div class="col">
+                <div class="form-group col">
                     <button type="button" class="btn btn-success btn-block z-depth-2" (click)="openCheckout(document.filePrice, document.documentPath, streetAddress.value)"><i class='fa fa-arrow-down'></i> Download</button>                  
                 </div>
               </div>              

@@ -36,11 +36,6 @@ export class UsersService {
     return this.http.post(this.baseUri+'/stripeCharge', body).map(res => res.json());
   }
 
-  zipCodeLookUp(city: string, state: string)
-  {
-    return this.http.get('https://www.zipcodeapi.com/rest/e0evIYjgtQcyFZmQE2DxeRzNoydyMuVhBdAOe0rBDZBIuIoOmrqpQ5IX22YMsy6H/city-zips.json/' + city + '/' + state).map(res => res.json());
-  }
-
   /*
   updateUsers(users:Users){
     return this.http.put(this.baseUri+'/update',  users, {headers:this.headers});

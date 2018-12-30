@@ -18,6 +18,8 @@ export class DocumentDownloadComponent implements OnInit {
   private documentCardIsVisible: Boolean;
   @ViewChild('search') public searchElement: ElementRef;
 
+  zipCode: string;
+
   constructor(private mapsAPILoader: MapsAPILoader, private usersService:UsersService, private ngZone: NgZone) {
     this.documentsFound = [];
   }
@@ -32,6 +34,14 @@ export class DocumentDownloadComponent implements OnInit {
                             if(place.geometry === undefined || place.geometry === null )
                             {
                               return;
+                            }
+                            for (var i = 0; i < place.address_components.length; i++) {
+                              for (var j = 0; j < place.address_components[i].types.length; j++) {
+                                if (place.address_components[i].types[j] == "postal_code") {
+                                  this.zipCode = " ";
+                                  this.zipCode = place.address_components[i].long_name;                                  
+                                }
+                              }
                             }
                         });
                     });
@@ -72,9 +82,7 @@ export class DocumentDownloadComponent implements OnInit {
         {
             this.documentCardIsVisible = false;
             this.notFoundIsVisible = true;
-        }
-
-        console.log(data);          
+        }                  
       },
       error=>{
         console.log(error);
@@ -124,8 +132,9 @@ export class DocumentDownloadComponent implements OnInit {
     let filename = dPath[1];
     //console.log(filename);    
     this.usersService.downloadFile(filename).subscribe(
-      data=>{       
-       saveAs(data,fName);      
+      data=>{      
+        let documentSeenName = fName + "-" + filename; 
+       saveAs(data, documentSeenName);      
       },
       error=>{
         console.log(error);

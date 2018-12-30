@@ -15,21 +15,10 @@
     margin: 0;
     line-height:1 !important;
   }
-  
-  .page-top {
-    /* The image used */
-    background-color: #f44336;
-  
-    /* Full height */
-    height: 100%; 
-    background-size: contain;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    
-  }
-  
+
   .card{
+    margin-left: 1em;
+    margin-right: 1em;
     margin-bottom: 15px;
   }
   
@@ -57,7 +46,17 @@
     background-color: #fff !important;
     border-radius: 5px;
   }
+
+  .card-body{
+    padding: 0.5em;
+  }
   
+  @media (min-width:768px) {
+    .card{
+      margin-left: 5em;
+      margin-right:5em;
+    }
+  }
   
   
     
