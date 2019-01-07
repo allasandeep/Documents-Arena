@@ -19,45 +19,44 @@
             <!--Form with header-->
             <div class="card">             
         
-                <div class="card-body"> 
+                <div class="card-body text-left"> 
                     <form (ngSubmit) = "documentSubmit()" [formGroup]="uploadForm" enctype="multipart/form-data"> 
                         <div class="form-group">                                                                                 
                           <div class="form-group">
                           <div class="form-row">
-                              <div class="form-group col-md-6" style="text-align: left">
+                              <div class="form-group col-md-6">
                           <h5 style="color:#f44336">File Information</h5>  
                               </div>
-                          </div>  
-                                                        
-                              <div class="custom-file mb-3">
+                          </div>                                                          
+                                <div class="form-group custom-file mb-4">                                    
                                     <input type="file" name="file" id="file" [ngClass]="{ 'is-invalid': submitted && f.file.errors }" (input) = "fileName = $event.target.files[0] ? $event.target.files[0].name : null" #userDoc formControlName="file" class="custom-file-input" >
-                                    <label for="file" class="custom-file-label" style="text-align: left">{{fileName != null ? fileName :'Choose File...'}}</label>
+                                    <label for="file" class="custom-file-label ">{{fileName != null ? fileName :'Choose File...'}}</label>
                                     <div *ngIf="submitted && f.file.errors" class="invalid-feedback">
-                                        <div *ngIf="f.file.errors.required" style="text-align:center">Please select a file                                          
-                                        </div>
-                                    </div>                                                                      
-                                </div>      
+                                        <div *ngIf="f.file.errors.required" >Please select a file</div>
+                                    </div>                  
+                                </div>                                    
+                                     
                                 <div class="form-row">
-                                    <div class="form-group col-8">
+                                    <div class="form-group col-md-8">
                                     <input type="text" class="form-control searchAddress" id="searchAddress" formControlName="addressFound" [(ngModel)] = "addressFound" placeholder="Type to Search Address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" #searchAddress>                                     
                                     </div>
-                                    <div class="form-group col">
+                                    <div class="form-group col-md">
                                     <button type="button" class="btn btn-primary btn-block z-depth-2"  (click)="fillAddressFields(searchAddress.value)" [disabled]="searchAddress.value.length > 0 ? false : true">Select</button>
                                     </div>                                    
                                 </div>    
-                                <small id="emailHelp" class="form-text text-muted">Select address from the suggestions to automatically fill below fields.</small>
+                                <small id="emailHelp" class="form-text text-muted text-center">Select address from the suggestions to automatically fill below fields.</small>
                                 <br/>                                      
                                 <div class="form-row"> 
                                     <div class="form-group col-md-6">                     
                                     <input type="text" class="form-control" id="fileAddress" formControlName="fileAddress" [(ngModel)] = "users.fileAddress"  [ngClass]="{ 'is-invalid': submitted && f.fileAddress.errors }" placeholder="Street Address" [attr.disabled]="true">
                                     <div *ngIf="submitted && f.fileAddress.errors" class="invalid-feedback">
-                                    <div *ngIf="f.fileAddress.errors.required" style="text-align:left ">Address is required</div>
+                                    <div *ngIf="f.fileAddress.errors.required" >Address is required</div>
                                     </div>
                                     </div>
                                     <div class="form-group col-md-6">               
                                     <input type="text" class="form-control" id="fileCity" formControlName="fileCity" [(ngModel)] = "users.fileCity" [ngClass]="{ 'is-invalid': submitted && f.fileCity.errors }" placeholder="City" [attr.disabled]="true">
                                     <div *ngIf="submitted && f.fileCity.errors" class="invalid-feedback">
-                                        <div *ngIf="f.fileCity.errors.required" style="text-align:left" >City is required</div>
+                                        <div *ngIf="f.fileCity.errors.required" >City is required</div>
                                     </div>
                                    </div>          
                                     </div>
@@ -65,13 +64,13 @@
                                         <div class="form-group col-md-6">                     
                                         <input type="text" class="form-control" id="fileState" formControlName="fileState" [(ngModel)] = "users.fileState"  [ngClass]="{ 'is-invalid': submitted && f.fileState.errors }" placeholder="State" [attr.disabled]="true">
                                         <div *ngIf="submitted && f.fileState.errors" class="invalid-feedback">
-                                        <div *ngIf="f.fileState.errors.required" style="text-align:left ">State is required</div>
+                                        <div *ngIf="f.fileState.errors.required" >State is required</div>
                                         </div>
                                         </div>
                                         <div class="form-group col-md-6">               
                                             <input type="text" class="form-control" id="fileCountry" formControlName="fileCountry" [(ngModel)] = "users.fileCountry" [ngClass]="{ 'is-invalid': submitted && f.fileCountry.errors }" placeholder="Country" [attr.disabled]="true">
                                             <div *ngIf="submitted && f.fileCountry.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fileCountry.errors.required" style="text-align:left" >Country is required</div>
+                                                <div *ngIf="f.fileCountry.errors.required"  >Country is required</div>
                                             </div>
                                         </div>          
                                         </div>
@@ -79,7 +78,7 @@
                                             <div class="form-group col-md-6">    
                                                 <input type="text" class="form-control" id="fileZip" formControlName="fileZip" [(ngModel)] = "users.fileZip" [ngClass]="{ 'is-invalid': submitted && f.fileZip.errors }" placeholder="Zip Code" [attr.disabled]="true">
                                                 <div *ngIf="submitted && f.fileZip.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.fileZip.errors.required" style="text-align:left" >Zip Code is required</div>
+                                                    <div *ngIf="f.fileZip.errors.required"  >Zip Code is required</div>
                                                 </div>                                               
                                                 </div>
                                         <div class="form-group col-md-6"> 
@@ -89,7 +88,7 @@
                                               </div>
                                             <input type="text" class="form-control" id="filePrice" formControlName="filePrice" [(ngModel)]="users.filePrice" [ngClass]="{ 'is-invalid': submitted && f.filePrice.errors }" placeholder="Enter Price">
                                             <div *ngIf="submitted && f.filePrice.errors" class="invalid-feedback">
-                                                <div *ngIf="f.filePrice.errors.required" style="text-align:left ">File Price is required</div>                                                
+                                                <div *ngIf="f.filePrice.errors.required" >File Price is required</div>                                                
                                         </div>
                                         </div>
                                         </div>
@@ -98,7 +97,7 @@
                           
                           <div class="form-group"> 
                           <div class="form-row">
-                              <div class="form-group col-md-6" style="text-align: left">
+                              <div class="form-group col-md-6" >
                           <h5 style="color:#f44336">Personal Information</h5>  
                               </div>
                           </div> 
@@ -106,40 +105,40 @@
                                 <div class="form-group col-md-6">                     
                                 <input type="text" class="form-control" id="firstName" formControlName="firstName" [(ngModel)] = "users.firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="Enter First Name">
                                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                                <div *ngIf="f.firstName.errors.required" style="text-align:left ">First Name is required</div>
+                                <div *ngIf="f.firstName.errors.required" >First Name is required</div>
                                 </div>
                                 </div>
                                 <div class="form-group col-md-6">               
                                 <input type="text" class="form-control" id="lastName" formControlName="lastName" [(ngModel)] = "users.lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Enter Last Name">
                                 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                                    <div *ngIf="f.lastName.errors.required" style="text-align:left" >Last Name is required</div>
+                                    <div *ngIf="f.lastName.errors.required"  >Last Name is required</div>
                                 </div>
                                </div>          
                                 </div>
                                 <div class="form-group">                        
                                 <input type="email" id="email" formControlName="email" class="form-control" [(ngModel)] = "users.email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter Email">
-                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                    <div *ngIf="f.email.errors.required" style="text-align:left ">Email is required</div>
-                                    <div *ngIf="f.email.errors.email" style="text-align:left ">Email must be a valid email address</div>
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback" >
+                                    <div *ngIf="f.email.errors.required" >Email is required</div>
+                                    <div *ngIf="f.email.errors.email" >Email is not valid</div>
                                 </div>
                                 </div>
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
                                 <input type="number" class="form-control" onKeyPress="if(this.value.length==9) return false;" id="routingNum" formControlName="routingNum" [(ngModel)] = "users.routingNum" [ngClass]="{ 'is-invalid': submitted && f.routingNum.errors }" placeholder="Enter Routing Number">
                                 <div *ngIf="submitted && f.routingNum.errors" class="invalid-feedback">
-                                    <div *ngIf="f.routingNum.errors.required" style="text-align:left ">Routing number is required</div>
+                                    <div *ngIf="f.routingNum.errors.required" >Routing number is required</div>
                                 </div>
-                                <div *ngIf="onKeyPress" style="text-align:left ">Enter a valid Routing number.</div>
+                                <div *ngIf="onKeyPress" >Enter a valid Routing number.</div>
                                 </div>
                                 <div class="form-group col-md-6">
                                 <input type="text" class="form-control" id="accountNum" formControlName="accountNum" [(ngModel)] = "users.accountNum" [ngClass]="{ 'is-invalid': submitted && f.accountNum.errors }" placeholder="Enter Account Number">
                                 <div *ngIf="submitted && f.accountNum.errors" class="invalid-feedback">
-                                    <div *ngIf="f.accountNum.errors.required" style="text-align:left ">Account number is required</div>
-                                    <div *ngIf="f.accountNum.errors.minlength" style="text-align:left ">Enter a valid Account number</div>
+                                    <div *ngIf="f.accountNum.errors.required" >Account number is required</div>
+                                    <div *ngIf="f.accountNum.errors.minlength" >Enter a valid Account number</div>
                                 </div>
                                 </div>            
                                 </div>
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
+                                <small id="emailHelp" class="form-text text-muted text-center">We'll never share your details with anyone else.</small>
                                 <br/>
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
