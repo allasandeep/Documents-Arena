@@ -5,18 +5,25 @@
       </button>
     
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="#">Home </a>
+            <a class="nav-link" routerLink="/">Home </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="/documentUpload">Sell</a>
+            <a class="nav-link" routerLink="/documentUpload" routerLinkActive="active">Sell</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="/documentDownload">Buy</a>
-          </li>
-        </ul>
-        
+            <a class="nav-link" routerLink="/documentDownload" routerLinkActive="active">Buy</a>
+          </li>   
+          <li class="nav-item ">
+              <a class="nav-link" routerLink="/activity" routerLinkActive="active">Activity</a>
+            </li>       
+        </ul>  
+        <ul class="navbar-nav" >             
+            <a class="nav-link"  *ngIf="!usersService.loggedIn()" href="/login" (click)="logout()">Login</a>
+            <a class="nav-link"  *ngIf="!usersService.loggedIn()" href="/register" (click)="logout()">Register</a>
+           <a class="nav-link"  style="cursor:pointer" *ngIf="usersService.loggedIn()" (click)="usersService.logout()">Logout</a>            
+        </ul>           
       </div>   
 </nav>       
       
