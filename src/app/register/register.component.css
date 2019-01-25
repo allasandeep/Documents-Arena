@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+    .form-simple{
+      width: 30rem;
+    }    
+  }
+
+.card{
+    margin-bottom: 3em;
+  }
+
+  html,body {  
+    height: 100%;
+    margin: 0;
+    line-height:1 !important;
+  } 
