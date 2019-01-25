@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { Router } from '@angular/router';
-import {UsersService} from '../shared/users.service';
-import {Users} from '../users';
+import { UsersService} from '../shared/users.service';
+import { Users} from '../users';
 import { MapsAPILoader } from '@agm/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-document-upload',
@@ -20,13 +21,21 @@ export class DocumentUploadComponent implements OnInit {
   submitted = false;
   isSuccess:Boolean;
   isNotSuccess:Boolean;
-  zipCode:string;
+  zipCode:string;  
+  userData:string;
   @ViewChild('searchAddress') public searchAddress: ElementRef;
   private addressFound: string;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private usersService:UsersService, private router:Router, private formBuilder: FormBuilder) { }
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private usersService:UsersService, private router:Router, private formBuilder: FormBuilder) {
+    }
 
   ngOnInit() {   
+    
+    this.usersService.verifyToken().subscribe(
+      res => {
+        this.userData = JSON.stringify(res)},
+      err => console.log(err)
+    )
 
     this.mapsAPILoader.load().then(
       () => {
@@ -118,9 +127,10 @@ export class DocumentUploadComponent implements OnInit {
     const ImageFile: File = this.selectedFile;
     this.selectedFileName = ImageFile.name;
     const datetime = new Date();
-    const fileName = (datetime.getTime() + Math.random()).toLocaleString();
+    const fileName = (datetime.getTime() + Math.random()).toLocaleString();    
    //console.log(ImageFile);
     const formdata:FormData = new FormData();
+    formdata.append("userId", this.userData);
     formdata.append("firstName", this.users.firstName);
     formdata.append("lastName", this.users.lastName);
     formdata.append("email", this.users.email);
@@ -155,6 +165,7 @@ export class DocumentUploadComponent implements OnInit {
   resetForm(){
     this.uploadForm.reset();
     this.submitted = false;    
-  }  
+  } 
+ 
 
 }

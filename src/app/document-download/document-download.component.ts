@@ -63,7 +63,7 @@ export class DocumentDownloadComponent implements OnInit {
       country = address[3].trim();
     }
     //console.log(street + "-" + city + "-" + state + "-" + country);
-    this.usersService.readUsers().subscribe(
+    this.usersService.readDocuments().subscribe(
       data=>{
         this.documentsFound = [];
         data.forEach(element => {

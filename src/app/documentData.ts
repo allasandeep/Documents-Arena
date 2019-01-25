@@ -1,5 +1,6 @@
 export class DocumentData {
     public _id?:string;
+    public userData:object;
     public firstName:string;
     public lastName:string;
     public email:string;
