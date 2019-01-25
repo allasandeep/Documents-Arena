@@ -1,0 +1,65 @@
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Documents Arena</title>    
+   
+  </head>
+
+  <body style="background-color: #f44336;">                  
+      <div class="container-fluid" align="center">
+      <section class="form-simple">
+          <div class="card">        
+              <div class="card-body">                                            
+                          <form role="form" (ngSubmit) = "loginUser()" [formGroup]="loginForm" enctype="multipart/form-data">
+                            <fieldset>
+                              <h2>Please Sign In</h2>
+                              <hr>
+                              <div class="alert alert-warning" role="alert" *ngIf="notFoundIsVisible">
+                                  <strong>Sorry!</strong>  No documents were found for that address.
+                                </div>
+                              <div class="form-group">
+                                    <input type="email" id="email" class="form-control input-lg" placeholder="Email Address" formControlName="email" [(ngModel)] = "email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback text-left">
+                                        <div *ngIf="f.email.errors.required" >Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email is not valid</div>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <input type="password" id="password" class="form-control input-lg"  placeholder="Password" formControlName="password" [(ngModel)] = "password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback text-left" >
+                                        <div *ngIf="f.password.errors.required" >Password is required</div>                                        
+                                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                    </div>
+                                  </div>
+                              <div class="form-group">      
+                                <a href="" class="btn btn-link">Forgot Password?</a>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                  <div class="col-xs-6 col-sm-6 col-md-6 form-group">
+                                                <input type="submit" class="btn btn-success btn-block" value="Sign In">
+                                  </div>
+                                  <div class="col-xs-6 col-sm-6 col-md-6 form-group">
+                                    <a href="/register" class="btn btn-primary btn-block">Register</a>
+                                  </div>
+                                </div>
+                            </fieldset>
+                          </form>                        
+                    
+              </div>
+          </div>
+       
+
+                    
+    
+    </section>    
+  </div>       
+  </body>
+
+</html>
