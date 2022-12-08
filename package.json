@@ -24,7 +24,7 @@
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "mongodb": "^3.1.1",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
